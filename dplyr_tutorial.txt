@@ -1,0 +1,54 @@
+DPLYR QUICK TUTORIAL.
+
+//Dplyr is a great R library for quick data manipulation. It has some nice piping features (%>%) and few useful commands. I'll summarize here. 
+
+install.packages("dplyr"); library(dplyr)
+
+// Main functions: 
+//select() select columns 
+//filter() filter rows 
+//arrange() re-order or arrange rows 
+//mutate() create new columns 
+//summarise() summarise values 
+//group_by() allows for group operations in the “split-apply-combine” concept 
+
+//examples.
+
+data <- read.csv("whatever.csv") 
+
+data %>% select(column1, column2) # to select a subset of columns 
+data %>% select(-column3) #select all columns except column3 
+data %>% select (starts_with("col") #query column names for selection 
+
+//additional commands can be piped with %>% 
+
+data %>% select(column1) %>% head 
+
+//rows can be filtered with filter() 
+
+data %>% filter (column1 > 100)
+data %>% filter (column1 > 100, column2 < 50, column3 %in% c("type1", "type2")  #%in% for categories
+
+//results can be showed ordered with arrange(): 
+
+data%>% arrange(column1) %>% head data %>% arrange(column1, column2) %>% #multiple consecutive nested orders 
+data %>%
+   select(...) %>%
+   arrange(...) %>%
+   head
+
+//arrange support decending orders: 
+ arrange(desc(column1))
+
+//mutate() is used to create new columns. Useful to create boolean masks for further analysis:
+
+data %>% mutate (column4 = column1/column2) #numeric
+data %>% mutate (column4 = (column1 == column2))  #boolean
+
+//summarise() is used to create summaries (well.. ok).
+
+data %>% summarise (mean(column1), sd(column1), mean(column2), sd(column2))
+
+//group_by is one of the best functions. It can perform functions after dividing the dataset in subsets, then merge the results in  a single report.
+
+data%>% group_by(column3) %>% summarise(mean(column1), mean(columns2))  # will give the means of the 2 columns1 and 2 divided for every category of column3.
