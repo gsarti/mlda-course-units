@@ -108,4 +108,29 @@ qqline(y)
 hist.scott(y, main="")
 lines(sort(y), dnorm(sort(y), 5, 2), col=2, lwd=2) #We have to sort y in order to plot the right normal distr. function
 
+#Joint distribution simulation
+par(mfrow=c(1,1), pty = "s", pch=20)
+x <- rbinom(10^5, size = 1, prob = 0.7)
+y <- rnorm(10^5, m = x * 5, s = 1) ### Y| X = x ~ N(x * 5, 1)
+hist.scott(y, main = "", xlim = c(-4, 10))
 
+xx <- seq(-4, 10, l = 1000)
+ff <- 0.3 * dnorm(xx, 0) + 0.7 * dnorm(xx, 5)
+### This is a mixture of normal distributions
+hist.scott(y, main = "", xlim = c(-4, 10))
+lines(xx, ff, col = "red", lwd = 2)
+
+# CLT exercise
+
+n <- c(5, 10, 50)
+p <- c(0.1,0.5,0.9)
+par(mfrow=c(3,3), pty = "s", pch=20)
+for(j in 1:3){
+  for (i in 1:3){
+    mean <- n[j]*p[i]
+    variance <- n[j]*p[i]*(1-p[i])
+    x <- seq(floor(mean - 4 * sqrt(variance)), floor(mean + 4 * sqrt(variance)), 1)
+    plot(x, dbinom(x, n[j], p[i]))
+    lines(dnorm(x, mean, sqrt(variance)), col=2, lwd=2)
+  }
+}
