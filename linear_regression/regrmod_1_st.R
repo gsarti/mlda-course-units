@@ -8,10 +8,13 @@
 
 # Load the library (UsingR) and data (galton) needed
 
-
+install.packages('UsingR', dependencies = TRUE, repos = 'http://cran.rstudio.com')
+install.packages('faraway', dependencies = TRUE, repos = 'http://cran.rstudio.com')
+data = galton
 
 # Explore graphically the relationship between parent/child heights
 
+plot(galton$parent, galton$child, xlab='child', ylab = 'arent')
 
 # Note that there are more observations for each point.
 # Make the graph more informative on this respect (hint: jitter data; point size dependent on numerosity)

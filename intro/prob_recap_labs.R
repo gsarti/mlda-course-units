@@ -61,9 +61,9 @@ lines(xx, dchisq(xx, 20), col = 3)
 xx <- seq(0, 10, l=1000)
 
 #The second and third parameters are the degrees of freedom
-plot(xx, df(xx, 100, 5), xlab = "x", ylab = "f(x)", type = "l")
-lines(xx, df(xx, 5, 10), col = 2)
-lines(xx, df(xx, 5, 40), col = 3)
+plot(xx, df(xx, 10, 10), xlab = "x", ylab = "f(x)", type = "l")
+lines(xx, df(xx, 10, 5), col = 3)
+lines(xx, df(xx, 5, 2), col = 2)
 
 #The t distribution
 
@@ -79,6 +79,7 @@ lines(xx, dt(xx, 1), col = 4) #Cauchy distribution
 
 x <- rnorm(10^5) #simulate 10 000 values for a standard normal by default
 xx <- seq(min(x), max(x), l = 1000)
+library("MASS")
 hist.scott(x, main= "") #from MASS package, automatically divides the histogram into 
 lines(xx, dnorm(xx), col = 2, lwd = 2)
 
@@ -92,10 +93,10 @@ curve(dunif(x), from=0, to=1, col=2, lwd=2, add=T)
 x <- seq(-3, 13, l=1000) #centered around 5, with +- 8 range
 par(mfrow=c(1,2), pty="s", pch=20)
 #Cumulative distribution function of Normal distribution on x
-plot(x, pnorm(x, 5, 2), xlab = "x", ylab = "f(x)", type = "l")
+plot(x, pnorm(x, 5, 2), xlab = "x", ylab = "F(x)", type = "l")
 p <- seq(0,1, l=1000)
 #Quantile distribution function of Normal distribution on x
-plot(p, qnorm(p, 5, 2))
+plot(p, qnorm(p, 5, 2), xlab = "p", ylab = "F⁻¹(p)", type = "l")
 
 
 #Inversion sampling
@@ -109,6 +110,7 @@ hist.scott(y, main="")
 lines(sort(y), dnorm(sort(y), 5, 2), col=2, lwd=2) #We have to sort y in order to plot the right normal distr. function
 
 #Joint distribution simulation
+
 par(mfrow=c(1,1), pty = "s", pch=20)
 x <- rbinom(10^5, size = 1, prob = 0.7)
 y <- rnorm(10^5, m = x * 5, s = 1) ### Y| X = x ~ N(x * 5, 1)
