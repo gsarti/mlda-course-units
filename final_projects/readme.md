@@ -18,3 +18,12 @@ Useful links:
  * [Microsoft Academic Knowledge API](https://labs.cognitive.microsoft.com/en-us/project-academic-knowledge)
 
  * [dblp library](https://dblp.uni-trier.de/faq/13501473)
+ 
+ ## Analysis of Svevo's Letter Corpus
+ 
+A corpus of approximately 900 letters sent by and received to Italo Svevo, the famous writer from Trieste, is available below in this page. The letters are written in different languages (Italian, English, German, and Triestino, the dialect of Trieste); sometimes, more than one language is used in the same letter. The goal is to discover and report:
+
+* which are the main topics of discussion in the corpus, who are the persons which each topic is more associated with, how does the interest on different topics evolve over the time
+* which are the sentiments (positive, negative, at least) expressed in the letters, how are they related with persons and topics, how do they evolve over the time
+
+The corpus is provided as a csv file. It contains info about: corpus section name, index of letter in the section, date of the letter,  year of the letter, sender of the letter, location of the sender, recipient, location of the recipient, languages used in the letter, main language, text of the letter. The corpus has already been [preliminary analyzed](http://www.museosveviano.it/ar/progetto/archivio-digitale/).
